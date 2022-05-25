@@ -1,7 +1,7 @@
 # POC Faster Server
-This proof of concept aims to determine the fastest and most performative framework, based on a simple Hello World implementation.
+This proof of concept aims to determine the fastest and most performative framework, based on a simple Healthcheck implementation.
 
-### Frameworks
+## Frameworks
 - [Activej](https://activej.io/) (Java)
 - [Echo](https://echo.labstack.com/) (Golang)
 - [Express](https://expressjs.com/) (Nodejs)
@@ -11,3 +11,18 @@ This proof of concept aims to determine the fastest and most performative framew
 - [Spring Webflux](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) (Java)
 - [Thorntail](https://thorntail.io/) (Java)
 - [Vert.x](https://vertx.io/) (Java)
+
+## Benchmark
+The tests were performed using the benchmarking tool [WRK](https://github.com/wg/wrk)
+
+| Framework     | Request/sec   | Transfer/sec  |
+|   :-          |       :-:     |       :-:     |
+| activej       | 168910.86     | 21.26MB       |
+| jooby         | 119640.7      | 15.40MB       |
+| micronaut     | 86104.02      | 12.73MB       |
+| spring mvc    | 25903.94      | 21.26MB       |
+| spring webflux| 68963.34      | 6.12MB        |
+| thorntail     | 61307.96      | 9.00MB        |
+| vert.x        | 91806.23      | 8.14MB        |
+| echo          | 117374.54     | 16.45MB       |
+| express       | 18402.85      | 4.11MB        |
