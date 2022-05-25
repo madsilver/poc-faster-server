@@ -26,3 +26,8 @@ The tests were performed using the benchmarking tool [WRK](https://github.com/wg
 | vert.x        | 91806.23      | 8.14MB        |
 | echo          | 117374.54     | 16.45MB       |
 | express       | 18402.85      | 4.11MB        |
+
+## Environment
+- Ubuntu 20.04.4 LTS
+- 16G RAM
+- 11th Gen Intel® Core™ i5-1135G7 @ 2.40GHz × 8 
