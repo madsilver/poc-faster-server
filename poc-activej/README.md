@@ -2,5 +2,5 @@
 
 ### Create from maven archetype
  ```sh
- mvn archetype:generate -DarchetypeGroupId=pt.sapo -DarchetypeArtifactId=poc-activej -DarchetypeVersion=5.2
+ mvn archetype:generate -DarchetypeGroupId=io.activej -DarchetypeArtifactId=archetype-http -DarchetypeVersion=5.2
  ```
