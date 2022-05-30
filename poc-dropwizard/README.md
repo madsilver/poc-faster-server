@@ -1,5 +1,10 @@
 # Healthcheck
 
+### Create from maven archetype
+```sh
+mvn archetype:generate -DarchetypeGroupId=io.dropwizard.archetypes -DarchetypeArtifactId=java-simple -DarchetypeVersion=2.1.0
+```
+
 How to start the Healthcheck application
 ---
 
