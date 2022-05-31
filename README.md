@@ -3,6 +3,7 @@ This proof of concept aims to determine the fastest and most performative framew
 
 ## Frameworks
 - [Activej](https://activej.io/) (Java)
+- [Dropwizard](https://www.dropwizard.io/) (Java)
 - [Echo](https://echo.labstack.com/) (Golang)
 - [Express](https://expressjs.com/) (Nodejs)
 - [Jooby](https://jooby.io/) (Java)
