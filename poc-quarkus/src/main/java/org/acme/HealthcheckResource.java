@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 public class HealthcheckResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Healthcheck healthcheck() {
         return new Healthcheck("It works");
     }

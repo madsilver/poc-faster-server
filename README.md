@@ -22,6 +22,7 @@ The tests were performed using the benchmarking tool [WRK](https://github.com/wg
 | activej       | 168910.86     | 21.26MB       |
 | jooby         | 119640.7      | 15.40MB       |
 | micronaut     | 86104.02      | 12.73MB       |
+| quarkus       | 99268.10      | 10.13MB       |
 | spring mvc    | 25903.94      | 21.26MB       |
 | spring webflux| 68963.34      | 6.12MB        |
 | thorntail     | 61307.96      | 9.00MB        |
