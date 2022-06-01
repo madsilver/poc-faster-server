@@ -20,7 +20,7 @@ The tests were performed using the benchmarking tools above:
 - [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html)
 - [Locust](https://github.com/locustio/locust)
 
-#### 100 Requests, 100 Thread :fire:
+#### WRK - 100 Requests, 100 Thread :fire:
 
 | Framework     | Request/sec   | Transfer/sec  |
 |   :-          |       :-:     |       :-:     |
@@ -36,7 +36,7 @@ The tests were performed using the benchmarking tools above:
 | echo          | 250430.22     | 35.11MB       |
 | express       | 11694.85      | 2.87MB        |
 
-#### 1M Requests, 1 Thread :rocket:
+#### WRK - 1M Requests, 1 Thread :rocket:
 
 | Framework     | Request/sec   | Transfer/sec  |
 |   :-          |       :-:     |       :-:     |
