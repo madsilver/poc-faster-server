@@ -15,7 +15,10 @@ This proof of concept aims to determine the fastest and most performative framew
 - [Vert.x](https://vertx.io/) (Java)
 
 ## Benchmark
-The tests were performed using the benchmarking tool [WRK](https://github.com/wg/wrk)
+The tests were performed using the benchmarking tools above:
+- [WRK](https://github.com/wg/wrk)
+- [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html)
+- [Locust](https://github.com/locustio/locust)
 
 #### 1M Requests, 1 Thread :rocket:
 
