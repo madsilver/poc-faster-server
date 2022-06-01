@@ -20,22 +20,6 @@ The tests were performed using the benchmarking tools above:
 - [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html)
 - [Locust](https://github.com/locustio/locust)
 
-#### 1M Requests, 1 Thread :rocket:
-
-| Framework     | Request/sec   | Transfer/sec  |
-|   :-          |       :-:     |       :-:     |
-| activej       | 168910.86     | 21.26MB       |
-| dropwizard    | 17771.23      | 2.61MB        |
-| jooby         | 119640.7      | 15.40MB       |
-| micronaut     | 86104.02      | 12.73MB       |
-| quarkus       | 99268.10      | 10.13MB       |
-| spring mvc    | 25903.94      | 21.26MB       |
-| spring webflux| 68963.34      | 6.12MB        |
-| thorntail     | 61307.96      | 9.00MB        |
-| vert.x        | 91806.23      | 8.14MB        |
-| echo          | 117374.54     | 16.45MB       |
-| express       | 18402.85      | 4.11MB        |
-
 #### 100 Requests, 100 Thread :fire:
 
 | Framework     | Request/sec   | Transfer/sec  |
@@ -51,6 +35,22 @@ The tests were performed using the benchmarking tools above:
 | vert.x        | 139222.75     | 12.35MB       |
 | echo          | 250430.22     | 35.11MB       |
 | express       | 11694.85      | 2.87MB        |
+
+#### 1M Requests, 1 Thread :rocket:
+
+| Framework     | Request/sec   | Transfer/sec  |
+|   :-          |       :-:     |       :-:     |
+| activej       | 168910.86     | 21.26MB       |
+| dropwizard    | 17771.23      | 2.61MB        |
+| jooby         | 119640.7      | 15.40MB       |
+| micronaut     | 86104.02      | 12.73MB       |
+| quarkus       | 99268.10      | 10.13MB       |
+| spring mvc    | 25903.94      | 21.26MB       |
+| spring webflux| 68963.34      | 6.12MB        |
+| thorntail     | 61307.96      | 9.00MB        |
+| vert.x        | 91806.23      | 8.14MB        |
+| echo          | 117374.54     | 16.45MB       |
+| express       | 18402.85      | 4.11MB        |
 
 ## Environment
 - Ubuntu 20.04.4 LTS

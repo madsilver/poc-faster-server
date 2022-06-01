@@ -4,15 +4,14 @@ set -e
 
 MASTER_PORT=5557
 MASTER_IP=127.0.0.1
-USERS=100
-SPAWN=100
+USERS=10
+SPAWN=10
 CORES=8
 SERVER_HOST=http://127.0.0.1:8080
-RUN_TIME=20s
+RUN_TIME=40s
 NAME=default
 
-if [ -n "$1" ]
-then
+if [ -n "$1" ]; then
     NAME=$1
 fi
 
@@ -24,8 +23,7 @@ echo "Master PID = $PID_MASTER"
 
 sleep 5
 
-# start SLAVE (clients)
-echo -e "\nStart SLAVES\n"
+echo -e "\nStart Slaves\n"
 PID_SLAVES=( )
 
 for ((i = 1; i <= $CORES; i++));do
@@ -33,4 +31,4 @@ for ((i = 1; i <= $CORES; i++));do
   PID_SLAVES+=( $! )
 done
 
-echo Slave PIDs = ${PID_SLAVES[@]}"
+echo "Slave PIDs = ${PID_SLAVES[@]}"
