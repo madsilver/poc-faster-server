@@ -17,9 +17,12 @@ This proof of concept aims to determine the fastest and most performative framew
 ## Benchmark
 The tests were performed using the benchmarking tool [WRK](https://github.com/wg/wrk)
 
+#### 1M Requests, 1 Thread :rocket:
+
 | Framework     | Request/sec   | Transfer/sec  |
 |   :-          |       :-:     |       :-:     |
 | activej       | 168910.86     | 21.26MB       |
+| dropwizard    | 17771.23      | 2.61MB        |
 | jooby         | 119640.7      | 15.40MB       |
 | micronaut     | 86104.02      | 12.73MB       |
 | quarkus       | 99268.10      | 10.13MB       |
@@ -29,6 +32,22 @@ The tests were performed using the benchmarking tool [WRK](https://github.com/wg
 | vert.x        | 91806.23      | 8.14MB        |
 | echo          | 117374.54     | 16.45MB       |
 | express       | 18402.85      | 4.11MB        |
+
+#### 100 Requests, 100 Thread :fire:
+
+| Framework     | Request/sec   | Transfer/sec  |
+|   :-          |       :-:     |       :-:     |
+| activej       | 190935.59     | 21.26MB       |
+| dropwizard    | 71040.23      | 10.43MB       |
+| jooby         | 299537.47     | 38.28MB       |
+| micronaut     | 178704.01     | 26.25MB       |
+| quarkus       | 259520.96     | 26.48MB       |
+| spring mvc    | 94840.14      | 13.31MB       |
+| spring webflux| 165601.39     | 14.69MB       |
+| thorntail     | 117448.17     | 17.25MB       |
+| vert.x        | 139222.75     | 12.35MB       |
+| echo          | 250430.22     | 35.11MB       |
+| express       | 11694.85      | 2.87MB        |
 
 ## Environment
 - Ubuntu 20.04.4 LTS
