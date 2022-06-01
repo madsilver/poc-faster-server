@@ -1,0 +1,85 @@
+#!/bin/bash
+
+set -e
+
+ROOT_DIR=$(pwd)
+
+has_artifact() {
+    if [[ -d "$1/target" ]]; then
+        echo "artifact found"
+    else
+        echo "artifact not found"
+        cd "$ROOT_DIR/$1"
+        mvn clean install
+        cd $ROOT_DIR
+    fi
+}
+
+activej() {
+    has_artifact poc-activej
+    java -jar poc-activej/target/poc-activej-5.2-jar-with-dependencies.jar
+}
+
+dropwizard() {
+    has_artifact poc-dropwizard
+    java -jar poc-dropwizard/target/poc-dropwizard-1.0-SNAPSHOT.jar server
+}
+
+jooby() {
+    has_artifact poc-jooby
+    java -jar poc-jooby/target/poc-jooby-1.0.0.jar
+}
+
+micronaut() {
+    has_artifact poc-micronaut
+    java -jar poc-micronaut/target/poc-micronaut-0.1.jar
+}
+
+quarkus() {
+    has_artifact poc-quarkus
+    java -jar poc-quarkus/target/quarkus-app/quarkus-run.jar
+}
+
+spring_mvc() {
+    has_artifact poc-spring-mvc
+    java -jar poc-spring-mvc/target/poc-spring-mvc-0.0.1-SNAPSHOT.jar
+}
+
+spring_webflux() {
+    has_artifact poc-spring-webflux
+    java -jar poc-spring-webflux/target/poc-spring-webflux-0.0.1-SNAPSHOT.jar
+}
+
+thorntail() {
+    has_artifact poc-thorntail
+    java -jar poc-thorntail/target/poc-thorntail-thorntail.jar
+}
+
+vertx() {
+    has_artifact poc-vertx
+    java -jar poc-vertx/target/poc-activex-1.0.0-fat.jar
+}
+
+
+if [[ -z "$1" ]]; then
+    echo "no arguments provided"
+    exit 1
+fi
+
+case "$1" in
+    activej) activej;;
+    dropwizard) dropwizard;;
+    jooby) jooby;;
+    micronaut) micronaut;;
+    quarkus) quarkus;;
+    spring-mvc) spring_mvc;;
+    spring-webflux) spring_webflux;;
+    thorntail) thorntail;;
+    vertx) vertx;;
+    *)
+        echo "invalid option: $1"
+        exit 1
+        ;;
+esac
+
+
