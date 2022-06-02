@@ -52,6 +52,20 @@ The tests were performed using the benchmarking tools above:
 | echo          | 117374.54     | 16.45MB       |
 | express       | 18402.85      | 4.11MB        |
 
+#### ApacheBench - 100K Requests, 100 Concurrency :rocket:
+
+| Framework     | Request/sec   | Transfer/sec  |
+|   :-          |       :-:     |       :-:     |
+| activej       | 48490.42      | 6MB           |
+| dropwizard    | 13366.64      | 2.01MB        |
+| jooby         | 35824.68      | 4.68MB        |
+| micronaut     | 24113.93      | 3.53MB        |
+| quarkus       | 24695.25      | 2.58MB        |
+| spring mvc    | 24649.89      | 3.05MB        |
+| spring webflux| 26366.99      | 2.39MB        |
+| thorntail     | 25958.03      | 3.77MB        |
+| vert.x        | 37519.58      | 3.40MB        |
+
 ## Environment
 - Ubuntu 20.04.4 LTS
 - 16G RAM
