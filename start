@@ -6,8 +6,7 @@
 set -e
 
 ROOT_DIR=$(pwd)
-NUM_REQUESTS=200
-URL_TARGET="localhost:8080/healthcheck"
+HOST="localhost:8080/healthcheck"
 
 has_artifact() {
     if [[ -d "$1/target" ]]; then
@@ -24,16 +23,19 @@ wait_kill() {
     if [[ "$1" == "-d" || "$1" == "--die" ]]; then
         server_pid=$2
         echo "Server PID: $server_pid"
-        sleep 2
-        trigger_requests
+        trigger_ab
         kill -9 $server_pid
     fi
 }
 
 trigger_requests() {
-    for i in $(seq 1 $NUM_REQUESTS); do
-        curl -s $URL_TARGET >/dev/null
+    for i in $(seq 1 1000); do
+        curl -s $HOST >/dev/null
     done
+}
+
+trigger_ab() {
+    ab -n 100000 -c 100 -q $HOST >/dev/null
 }
 
 activej() {
