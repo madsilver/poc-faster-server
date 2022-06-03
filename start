@@ -1,63 +1,102 @@
 #!/bin/bash
+#
+# Builda e roda os servidores
+#
 
 set -e
 
 ROOT_DIR=$(pwd)
+NUM_REQUESTS=200
+URL_TARGET="localhost:8080/healthcheck"
 
 has_artifact() {
     if [[ -d "$1/target" ]]; then
-        echo "artifact found"
+        echo "Artifact found"
     else
-        echo "artifact not found"
+        echo "Artifact not found"
         cd "$ROOT_DIR/$1"
         mvn clean install
         cd $ROOT_DIR
     fi
 }
 
+wait_kill() {
+    if [[ "$1" == "-d" || "$1" == "--die" ]]; then
+        server_pid=$2
+        echo "Server PID: $server_pid"
+        sleep 2
+        trigger_requests
+        kill -9 $server_pid
+    fi
+}
+
+trigger_requests() {
+    for i in $(seq 1 $NUM_REQUESTS); do
+        curl -s $URL_TARGET >/dev/null
+    done
+}
+
 activej() {
     has_artifact poc-activej
-    java -jar poc-activej/target/poc-activej-5.2-jar-with-dependencies.jar
+    java -jar poc-activej/target/poc-activej-5.2-jar-with-dependencies.jar &
+
+    wait_kill $1 $!
 }
 
 dropwizard() {
     has_artifact poc-dropwizard
-    java -jar poc-dropwizard/target/poc-dropwizard-1.0-SNAPSHOT.jar server
+    java -jar poc-dropwizard/target/poc-dropwizard-1.0-SNAPSHOT.jar server &
+
+    wait_kill $1 $!
 }
 
 jooby() {
     has_artifact poc-jooby
-    java -jar poc-jooby/target/poc-jooby-1.0.0.jar
+    java -jar poc-jooby/target/poc-jooby-1.0.0.jar &
+
+    wait_kill $1 $!
 }
 
 micronaut() {
     has_artifact poc-micronaut
-    java -jar poc-micronaut/target/poc-micronaut-0.1.jar
+    java -jar poc-micronaut/target/poc-micronaut-0.1.jar &
+
+    wait_kill $1 $!
 }
 
 quarkus() {
     has_artifact poc-quarkus
-    java -jar poc-quarkus/target/quarkus-app/quarkus-run.jar
+    java -jar poc-quarkus/target/quarkus-app/quarkus-run.jar &
+
+    wait_kill $1 $!
 }
 
 spring_mvc() {
     has_artifact poc-spring-mvc
-    java -jar poc-spring-mvc/target/poc-spring-mvc-0.0.1-SNAPSHOT.jar
+    java -jar poc-spring-mvc/target/poc-spring-mvc-0.0.1-SNAPSHOT.jar &
+
+    wait_kill $1 $!
 }
 
 spring_webflux() {
     has_artifact poc-spring-webflux
-    java -jar poc-spring-webflux/target/poc-spring-webflux-0.0.1-SNAPSHOT.jar
+    java -jar poc-spring-webflux/target/poc-spring-webflux-0.0.1-SNAPSHOT.jar &
+
+    wait_kill $1 $!
 }
 
 thorntail() {
     has_artifact poc-thorntail
-    java -jar poc-thorntail/target/poc-thorntail-thorntail.jar
+    java -jar poc-thorntail/target/poc-thorntail-thorntail.jar &
+
+    wait_kill $1 $!
 }
 
 vertx() {
     has_artifact poc-vertx
-    java -jar poc-vertx/target/poc-activex-1.0.0-fat.jar
+    java -jar poc-vertx/target/poc-activex-1.0.0-fat.jar &
+
+    wait_kill $1 $!
 }
 
 
@@ -66,16 +105,34 @@ if [[ -z "$1" ]]; then
     exit 1
 fi
 
+MENSAGEM_USO="
+Uso: $0 [SERVER_NAME | -h] [-d]
+
+    -h, --help      Mostra esta ajuda e sai
+    -d, --die       Roda o servidor em modo benchmark. Efetua $NUM_REQUESTS 
+                    requisições de healthcheck e encerra o servidor.
+
+Server options:     activej, dropwizard, jooby, micronaut, quarkus,
+                    spring-mvc, spring-webflux, thorntail, vertx
+
+To run the server in benchmark mode use:
+    ./start foo --die
+"
+
 case "$1" in
-    activej) activej;;
-    dropwizard) dropwizard;;
-    jooby) jooby;;
-    micronaut) micronaut;;
-    quarkus) quarkus;;
-    spring-mvc) spring_mvc;;
-    spring-webflux) spring_webflux;;
-    thorntail) thorntail;;
-    vertx) vertx;;
+    activej) activej $2;;
+    dropwizard) dropwizard $2;;
+    jooby) jooby $2;;
+    micronaut) micronaut $2;;
+    quarkus) quarkus $2;;
+    spring-mvc) spring_mvc $2;;
+    spring-webflux) spring_webflux $2;;
+    thorntail) thorntail $2;;
+    vertx) vertx $2;;
+    -h | --help)
+        echo "$MENSAGEM_USO"
+        exit 0
+        ;;
     *)
         echo "invalid option: $1"
         exit 1
