@@ -7,6 +7,10 @@ set -e
 
 ROOT_DIR=$(pwd)
 HOST="localhost:8080/healthcheck"
+AB_REQUESTS=11000000
+AB_THREADS=50
+SLEEP_BEFORE=5
+SLEEP_AFTER=5
 
 has_artifact() {
     if [[ -d "$1/target" ]]; then
@@ -22,9 +26,14 @@ has_artifact() {
 wait_kill() {
     if [[ "$1" == "-d" || "$1" == "--die" ]]; then
         server_pid=$2
-        echo "Server PID: $server_pid"
+        echo "Benchmark Mode: ON\nServer PID: $server_pid"
+        sleep $SLEEP_BEFORE
         trigger_ab
+
+        echo "Killing server PID $server_pid"
         kill -9 $server_pid
+
+        sleep $SLEEP_AFTER
     fi
 }
 
@@ -35,7 +44,12 @@ trigger_requests() {
 }
 
 trigger_ab() {
-    ab -n 100000 -c 100 -q $HOST >/dev/null
+    ab -n $AB_REQUESTS -c $AB_THREADS -q $HOST >/dev/null
+}
+
+clean_gc() {
+    jcmd $(pgrep java) GC.run
+    sleep 10
 }
 
 activej() {
